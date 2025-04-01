@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/mysql2';
 import { sql } from 'drizzle-orm';
 import { eq } from 'drizzle-orm';
-import { usuarios } from '../db/schema';
+import { usuarios } from 'src/db/schema';
 
 const db = drizzle(process.env.DATABASE_URL!);
 
