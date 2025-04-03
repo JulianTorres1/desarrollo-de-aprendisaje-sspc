@@ -6,7 +6,7 @@ interface ChangePasswordPopupProps {
 
 export default function ChangePasswordPopup({ onClose }: ChangePasswordPopupProps) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-10">
+    <div className="fixed inset-0 flex items-center ml-7 justify-center bg-opacity-10">
       <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative flex flex-col">
         <button onClick={onClose} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
           <X className="w-5 h-5" />

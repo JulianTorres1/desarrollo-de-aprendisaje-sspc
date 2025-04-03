@@ -48,7 +48,6 @@ export const authOptions = {
         token.id = user.id;
         token.role = user.role;
       }
-      console.log("JWT Callback", token);
       return token;
     },
     async session({ session, token }) {
@@ -56,7 +55,6 @@ export const authOptions = {
         session.user.id = token.id;
         session.user.role = token.role;
       }
-      console.log("Session Callback", session);
       return session;
     },
   },
