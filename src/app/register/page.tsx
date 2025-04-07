@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
@@ -7,38 +7,38 @@ interface FormData {
   nombre: string;
   correo: string;
   password: string;
-  rol: 'docente' | 'admin';
+  rol: "docente" | "admin";
 }
 
 export default function Register() {
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
-    nombre: '',
-    correo: '',
-    password: '',
-    rol: 'docente'
+    nombre: "",
+    correo: "",
+    password: "",
+    rol: "docente",
   });
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const registerUser = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
+      const res = await fetch("/api/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -46,16 +46,15 @@ export default function Register() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || 'Error al registrar usuario');
+        throw new Error(data.message || "Error al registrar usuario");
       }
 
       // Registro exitoso, redirigir al login
       alert(data.message);
 
-      router.push('/');
-
+      router.push("/");
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Error al registrar usuario');
+      setError(error instanceof Error ? error.message : "Error al registrar usuario");
     } finally {
       setLoading(false);
     }
@@ -71,7 +70,9 @@ export default function Register() {
       )}
       <form onSubmit={registerUser} className="space-y-4">
         <div>
-          <label htmlFor="nombre" className="block mb-1">Nombre</label>
+          <label htmlFor="nombre" className="block mb-1">
+            Nombre
+          </label>
           <input
             id="nombre"
             name="nombre"
@@ -84,7 +85,9 @@ export default function Register() {
           />
         </div>
         <div>
-          <label htmlFor="correo" className="block mb-1">Correo</label>
+          <label htmlFor="correo" className="block mb-1">
+            Correo
+          </label>
           <input
             id="correo"
             name="correo"
@@ -97,7 +100,9 @@ export default function Register() {
           />
         </div>
         <div>
-          <label htmlFor="password" className="block mb-1">Contraseña</label>
+          <label htmlFor="password" className="block mb-1">
+            Contraseña
+          </label>
           <input
             id="password"
             name="password"
@@ -108,19 +113,6 @@ export default function Register() {
             className="w-full p-2 border rounded"
             placeholder="Contraseña"
           />
-        </div>
-        <div>
-          <label htmlFor="rol" className="block mb-1">Rol</label>
-          <select
-            id="rol"
-            name="rol"
-            value={formData.rol}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          >
-            <option value="docente">Docente</option>
-            <option value="admin">Administrador</option>
-          </select>
         </div>
         <button
           type="submit"

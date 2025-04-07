@@ -1,7 +1,7 @@
 "use client";
 
 import { SessionProvider } from "next-auth/react";
-import SideNav from "../../components/home/sidenav";
+import SideNav from "../../components/home_docentes/sidenav";
 import Navbar from "../../components/home/navbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {

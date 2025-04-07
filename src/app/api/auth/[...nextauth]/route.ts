@@ -1,12 +1,9 @@
-
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "src/db/index"; // Asegúrate de importar tu conexión Drizzle
 import { usuarios } from "src/db/schema"; // Importa tu esquema
 import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
-
-
 
 export const authOptions = {
   providers: [

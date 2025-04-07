@@ -68,9 +68,7 @@ export default function UsersTable() {
         <tbody className="divide-y divide-gray-200">
           {usuarios.map((usuario) => (
             <tr key={usuario.id} className="hover:bg-gray-100">
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                {usuario.id}
-              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{usuario.id}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                 {usuario.nombre}
               </td>
@@ -88,16 +86,13 @@ export default function UsersTable() {
                 {new Date(usuario.fechaRegistro).toLocaleDateString()}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                
-              <button
-                onClick={handleOpenPopup}
-                className="flex items-center text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-900"
+                <button
+                  onClick={handleOpenPopup}
+                  className="flex items-center text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-900"
                 >
-                <Lock className="w-5 h-5" />
-                
-              </button>
-              {isPopupOpen && <ChangePasswordPopup onClose={handleClosePopup} />}
-
+                  <Lock className="w-5 h-5" />
+                </button>
+                {isPopupOpen && <ChangePasswordPopup onClose={handleClosePopup} />}
               </td>
             </tr>
           ))}

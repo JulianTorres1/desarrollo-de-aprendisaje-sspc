@@ -57,17 +57,13 @@
       "compositePrimaryKeys": {
         "usuarios_id": {
           "name": "usuarios_id",
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         }
       },
       "uniqueConstraints": {
         "usuarios_correo_unique": {
           "name": "usuarios_correo_unique",
-          "columns": [
-            "correo"
-          ]
+          "columns": ["correo"]
         }
       },
       "checkConstraint": {}

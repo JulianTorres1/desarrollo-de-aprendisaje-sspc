@@ -29,10 +29,19 @@ const LoginForm = () => {
       if (result?.error) {
         setError(result.error);
       } else {
-        router.push("/home"); // Redirigir después del login
+        // Obtener el rol del usuario desde el servidor o sesión
+        const response = await fetch("/api/auth/session");
+        const session = await response.json();
+
+        if (session?.user?.role === "docente") {
+          router.push("/home_docentes"); // Redirigir a docentes
+        } else if (session?.user?.role === "admin") {
+          router.push("/home"); // Redirigir a admin
+        } else {
+          setError("Rol no reconocido.");
+        }
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
+    } catch {
       setError("Error de conexión. Inténtelo de nuevo.");
     } finally {
       setLoading(false);
