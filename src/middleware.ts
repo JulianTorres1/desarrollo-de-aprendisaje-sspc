@@ -5,35 +5,43 @@ import { getToken } from "next-auth/jwt";
 const secret = process.env.NEXTAUTH_SECRET;
 
 export async function middleware(req: NextRequest) {
+  console.log("🚀 Middleware iniciado");
+
   const token = await getToken({ req, secret });
 
+
+  const { pathname } = req.nextUrl;
+
+  
   if (!token) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  const { pathname } = req.nextUrl;
+  if (pathname === "/") {
+    if (token.role === "docente") {
+      return NextResponse.redirect(new URL("/home_docentes", req.url));
+    }
+    if (token.role === "admin") {
+      return NextResponse.redirect(new URL("/home", req.url));
+    }
+  }
 
-  // 🟡 Verifica primero /home_docentes
   if (pathname.startsWith("/home_docentes")) {
     if (token.role === "docente") {
       return NextResponse.next();
     }
-
-    return NextResponse.redirect(new URL("/unauthorized", req.url)); // Redirige a /unauthorized si no es docente
+    return NextResponse.redirect(new URL("/unauthorized", req.url));
   }
 
-  // 🔵 Luego verifica /home
   if (pathname.startsWith("/home")) {
     if (token.role === "admin") {
       return NextResponse.next();
     }
-
-    return NextResponse.redirect(new URL("/unauthorized", req.url)); // Redirige a /unauthorized si no es admin
+    return NextResponse.redirect(new URL("/unauthorized", req.url));
   }
-
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/home", "/home/:path*", "/home_docentes", "/home_docentes/:path*"],
+  matcher: ["/home_docentes/:path*", "/home/:path*"],
 };

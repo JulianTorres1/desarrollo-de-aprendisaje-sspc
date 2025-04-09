@@ -6,15 +6,13 @@ import { usuarios } from "src/db/schema";
 
 const db = drizzle(process.env.DATABASE_URL!);
 
-// Test Database Connection
+// Test Database Connection.
 export async function testConnection() {
   try {
     await db.execute(sql`SELECT 1`);
-    console.log("Conexión a la base de datos exitosa!");
-    return true;
+    console.log("Conexión a la base de datos exitosa");
   } catch (error) {
     console.error("Error al conectar a la base de datos:", error);
-    return false;
   }
 }
 

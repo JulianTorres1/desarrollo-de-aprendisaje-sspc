@@ -34,8 +34,8 @@ const Navbar = () => {
             {session ? session.user?.name : "Usuario"}
           </h1>
         </div>
-        <div className="relative inline-flex items-center justify-center mr-2.5 w-10 h-10 overflow-hidden shadow-2xl bg-gray-100 rounded-full dark:bg-gray-600">
-          <span className="font-bold text-gray-600 dark:text-gray-300">{userInitials}</span>
+        <div className="relative inline-flex items-center justify-center mr-2.5 w-10 h-10 overflow-hidden shadow-2xl bg-red-500 rounded-full dark:bg-gray-600">
+          <span className="font-bold text-yellow-50 dark:text-gray-300">{userInitials}</span>
         </div>
       </nav>
     </div>

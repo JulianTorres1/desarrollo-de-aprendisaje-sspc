@@ -2,11 +2,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
-  --gray-light: #f3f4f6;
+  --foreground: #2e2e2e;
+  --primary: #a10000;
+  --primary-hover: #e51d1d;
+  --gray-light: #f5f5f5;
   --gray-text: #6b7280;
+  --hover-soft: rgba(229, 29, 29, 0.1);
 }
 
 @theme inline {
