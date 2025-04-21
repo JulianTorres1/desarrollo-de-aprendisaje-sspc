@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
-import { Users, Edit, BookOpen, Home, Shield, BarChart, Settings, LogOut } from "lucide-react";
+import { Users, Edit, BookOpen, BookMarked, Home, Shield, BarChart, Settings, LogOut } from "lucide-react";
 
 declare module "next-auth" {
   interface Session {
@@ -94,6 +94,15 @@ export default function SideNav() {
               >
                 <BookOpen className="w-5 h-5 text-yellow-50 group-hover:text-gray-900" />
                 <span className="ml-3">Asignaciones De Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/home/asignaturas"
+                className="flex items-center p-2 text-white rounded-lg hover:bg-red-100 hover:text-red-900 group"
+              >
+                <BookMarked className="w-5 h-5 text-yellow-50 group-hover:text-gray-900" />
+                <span className="ml-3">Asignaturas</span>
               </a>
             </li>
             <li>

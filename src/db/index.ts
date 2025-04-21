@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/mysql2";
 import { sql } from "drizzle-orm";
 import { eq } from "drizzle-orm";
 import { usuarios } from "src/db/schema";
+import { registrosDeDesarrolloDeAprendizaje } from "src/db/schema";
 
 const db = drizzle(process.env.DATABASE_URL!);
 
@@ -34,6 +35,46 @@ export async function updateUserRole(email: string, newRole: "admin" | "docente"
 export async function deleteUser(email: string) {
   await db.delete(usuarios).where(eq(usuarios.correo, email));
   return { message: "Usuario eliminado exitosamente" };
+}
+
+// Crud registrosDeDesarrolloDeAprendizaje
+
+// Crear un nuevo registro
+export async function createRegistro(registroData: typeof registrosDeDesarrolloDeAprendizaje.$inferInsert) {
+  await db.insert(registrosDeDesarrolloDeAprendizaje).values(registroData);
+  return { message: "Registro creado exitosamente" };
+}
+
+// Obtener todos los registros
+export async function getAllRegistros() {
+  const registros = await db.select().from(registrosDeDesarrolloDeAprendizaje);
+  return registros;
+}
+
+// Obtener un registro por ID
+export async function getRegistroById(id: number) {
+  const registro = await db
+    .select()
+    .from(registrosDeDesarrolloDeAprendizaje)
+    .where(eq(registrosDeDesarrolloDeAprendizaje.id_registro_desarrollo, id));
+  return registro;
+}
+
+// Actualizar un registro por ID
+export async function updateRegistro(id: number, updatedData: Partial<typeof registrosDeDesarrolloDeAprendizaje.$inferInsert>) {
+  await db
+    .update(registrosDeDesarrolloDeAprendizaje)
+    .set(updatedData)
+    .where(eq(registrosDeDesarrolloDeAprendizaje.id_registro_desarrollo, id));
+  return { message: "Registro actualizado exitosamente" };
+}
+
+// Eliminar un registro por ID
+export async function deleteRegistro(id: number) {
+  await db
+    .delete(registrosDeDesarrolloDeAprendizaje)
+    .where(eq(registrosDeDesarrolloDeAprendizaje.id_registro_desarrollo, id));
+  return { message: "Registro eliminado exitosamente" };
 }
 
 // Export the database instance if needed

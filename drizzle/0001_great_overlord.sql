@@ -1,0 +1,40 @@
+CREATE TABLE `registros_de_desarrollo_de_aprendizaje` (
+	`id_registro_desarrollo` serial AUTO_INCREMENT NOT NULL,
+	`id_docente` int NOT NULL,
+	`id_asignatura` int NOT NULL,
+	`id_grado` int NOT NULL,
+	`semana` varchar(20) NOT NULL,
+	`tema_general` varchar(200) NOT NULL,
+	`subtema` varchar(200) NOT NULL,
+	`evidencia` text NOT NULL,
+	`fase_exploracion` text NOT NULL,
+	`fase_conceptualizacion` text NOT NULL,
+	`fase_ejecucion` text NOT NULL,
+	`fase_transferencia` text NOT NULL,
+	`valoracion` text NOT NULL,
+	`observaciones` text NOT NULL,
+	`fecha_semana_inicio` date NOT NULL,
+	`fecha_semana_fin` date NOT NULL,
+	`grupo1_hp` int DEFAULT 0,
+	`grupo1_he` int DEFAULT 0,
+	`grupo2_hp` int DEFAULT 0,
+	`grupo2_he` int DEFAULT 0,
+	`grupo3_hp` int DEFAULT 0,
+	`grupo3_he` int DEFAULT 0,
+	`grupo4_hp` int DEFAULT 0,
+	`grupo4_he` int DEFAULT 0,
+	`exposiciones` int DEFAULT 0,
+	`lectura` int DEFAULT 0,
+	`desarrollo_ejercicios` int DEFAULT 0,
+	`descripcion_lamina` int DEFAULT 0,
+	`actividad_ludica` int DEFAULT 0,
+	`explicaciones` int DEFAULT 0,
+	`uso_aula_digital` int DEFAULT 0,
+	`otros_metodos` varchar(100) DEFAULT '',
+	`fecha_ingreso` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `registros_de_desarrollo_de_aprendizaje_id_registro_desarrollo` PRIMARY KEY(`id_registro_desarrollo`)
+);
+--> statement-breakpoint
+CREATE INDEX `idx_id_docente` ON `registros_de_desarrollo_de_aprendizaje` (`id_docente`);--> statement-breakpoint
+CREATE INDEX `idx_id_asignatura` ON `registros_de_desarrollo_de_aprendizaje` (`id_asignatura`);--> statement-breakpoint
+CREATE INDEX `idx_id_grado` ON `registros_de_desarrollo_de_aprendizaje` (`id_grado`);
