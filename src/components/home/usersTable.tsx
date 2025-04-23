@@ -6,7 +6,7 @@ import ChangePasswordPopup from "./ChangePasswordPopup";
 
 // Define la estructura de un usuario
 interface Usuario {
-  id: number;
+  id_usuario: number;
   nombre: string;
   correo: string;
   rol: string;
@@ -67,8 +67,10 @@ export default function UsersTable() {
         </thead>
         <tbody className="divide-y divide-gray-200">
           {usuarios.map((usuario) => (
-            <tr key={usuario.id} className="hover:bg-gray-100">
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{usuario.id}</td>
+            <tr key={usuario.id_usuario} className="hover:bg-gray-100">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                {usuario.id_usuario}
+              </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                 {usuario.nombre}
               </td>

@@ -19,7 +19,6 @@ const LoginForm = () => {
       const formData = new FormData(event.currentTarget);
       const correo = formData.get("correo") as string;
       const password = formData.get("password") as string;
-
       const result = await signIn("credentials", {
         correo,
         password,

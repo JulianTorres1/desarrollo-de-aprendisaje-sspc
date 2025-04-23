@@ -1,13 +1,11 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/mysql2";
-import { sql } from "drizzle-orm";
-import { eq } from "drizzle-orm";
-import { usuarios } from "src/db/schema";
-import { registrosDeDesarrolloDeAprendizaje } from "src/db/schema";
+import { sql, eq } from "drizzle-orm";
+import { usuarios, registrosDeDesarrolloDeAprendizaje, grado } from "src/db/schema";
 
 const db = drizzle(process.env.DATABASE_URL!);
 
-// Test Database Connection.
+// Test Database Connection
 export async function testConnection() {
   try {
     await db.execute(sql`SELECT 1`);
@@ -17,6 +15,7 @@ export async function testConnection() {
   }
 }
 
+// Usuarios
 export async function createUser(userData: typeof usuarios.$inferInsert) {
   await db.insert(usuarios).values(userData);
   return { message: "Usuario creado exitosamente" };
@@ -37,31 +36,31 @@ export async function deleteUser(email: string) {
   return { message: "Usuario eliminado exitosamente" };
 }
 
-// Crud registrosDeDesarrolloDeAprendizaje
-
-// Crear un nuevo registro
-export async function createRegistro(registroData: typeof registrosDeDesarrolloDeAprendizaje.$inferInsert) {
+// Registros de Desarrollo de Aprendizaje
+export async function createRegistro(
+  registroData: typeof registrosDeDesarrolloDeAprendizaje.$inferInsert
+) {
   await db.insert(registrosDeDesarrolloDeAprendizaje).values(registroData);
   return { message: "Registro creado exitosamente" };
 }
 
-// Obtener todos los registros
 export async function getAllRegistros() {
   const registros = await db.select().from(registrosDeDesarrolloDeAprendizaje);
   return registros;
 }
 
-// Obtener un registro por ID
 export async function getRegistroById(id: number) {
   const registro = await db
     .select()
     .from(registrosDeDesarrolloDeAprendizaje)
     .where(eq(registrosDeDesarrolloDeAprendizaje.id_registro_desarrollo, id));
-  return registro;
+  return registro[0];
 }
 
-// Actualizar un registro por ID
-export async function updateRegistro(id: number, updatedData: Partial<typeof registrosDeDesarrolloDeAprendizaje.$inferInsert>) {
+export async function updateRegistro(
+  id: number,
+  updatedData: Partial<typeof registrosDeDesarrolloDeAprendizaje.$inferInsert>
+) {
   await db
     .update(registrosDeDesarrolloDeAprendizaje)
     .set(updatedData)
@@ -69,7 +68,6 @@ export async function updateRegistro(id: number, updatedData: Partial<typeof reg
   return { message: "Registro actualizado exitosamente" };
 }
 
-// Eliminar un registro por ID
 export async function deleteRegistro(id: number) {
   await db
     .delete(registrosDeDesarrolloDeAprendizaje)
@@ -77,5 +75,30 @@ export async function deleteRegistro(id: number) {
   return { message: "Registro eliminado exitosamente" };
 }
 
-// Export the database instance if needed
+// Grados
+export async function getAllGrados() {
+  const result = await db.select().from(grado);
+  return result;
+}
+
+export async function getGradoById(id: number) {
+  const result = await db.select().from(grado).where(eq(grado.id_grado, id));
+  return result[0];
+}
+
+export async function createGrado(gradoData: typeof grado.$inferInsert) {
+  await db.insert(grado).values(gradoData);
+  return { message: "Grado creado exitosamente" };
+}
+
+export async function updateGrado(id: number, updatedData: Partial<typeof grado.$inferInsert>) {
+  await db.update(grado).set(updatedData).where(eq(grado.id_grado, id));
+  return { message: "Grado actualizado exitosamente" };
+}
+
+export async function deleteGrado(id: number) {
+  await db.delete(grado).where(eq(grado.id_grado, id));
+  return { message: "Grado eliminado exitosamente" };
+}
+
 export { db };

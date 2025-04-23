@@ -35,7 +35,12 @@ export const authOptions = {
           throw new Error("Contraseña incorrecta.");
         }
 
-        return { id: user.id.toString(), name: user.nombre, email: user.correo, role: user.rol };
+        return {
+          id: user.id_usuario.toString(),
+          name: user.nombre,
+          email: user.correo,
+          role: user.rol,
+        };
       },
     }),
   ],

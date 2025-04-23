@@ -15,6 +15,13 @@
       "when": 1744319130753,
       "tag": "0001_great_overlord",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1745342751242,
+      "tag": "0002_familiar_scream",
+      "breakpoints": true
     }
   ]
 }
