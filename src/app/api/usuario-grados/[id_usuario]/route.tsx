@@ -3,11 +3,8 @@ import { usuarioGrados, grado } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-export async function GET(
-  _req: Request,
-  { params }: { params: { id_usuario: string } }
-) {
-  const id = Number(params.id_usuario);
+export async function GET(_req: Request, context: { params: { id_usuario: string } }) {
+  const id = Number(context.params.id_usuario);
 
   try {
     const grados = await db
