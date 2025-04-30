@@ -35,6 +35,8 @@ interface Registro {
   explicaciones: number;
   uso_aula_digital: number;
   otros_metodos: string;
+  fecha_ingreso: string;
+  fecha_modificacion: string;
 }
 
 interface Usuario {
@@ -208,6 +210,12 @@ export default function RegistrosTable() {
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Acciones
             </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Fecha De Ingreso
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Fecha De Modificación
+            </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
@@ -254,6 +262,8 @@ export default function RegistrosTable() {
                 <button className="text-blue-500 hover:underline">Editar</button>
                 <button className="text-red-500 hover:underline ml-4">Eliminar</button>
               </td>
+              <td className="px-6 py-4 whitespace-nowrap">{registro.fecha_ingreso}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{registro.fecha_modificacion}</td>
             </tr>
           ))}
         </tbody>
